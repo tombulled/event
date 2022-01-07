@@ -1,12 +1,14 @@
 import dataclasses
-
 import enumb
 
-class Event(enumb.StrEnum): pass
+
+class Event(enumb.StrEnum):
+    pass
+
 
 @dataclasses.dataclass
 class Handler:
-    hooks: dict = dataclasses.field(default_factory = dict)
+    hooks: dict = dataclasses.field(default_factory=dict)
 
     def on(self, event):
         def wrapper(func):
@@ -22,6 +24,7 @@ class Handler:
     def dispatch(self, event, *args, **kwargs):
         for hook in self.hooks.get(event, ()):
             hook(*args, **kwargs)
+
 
 GLOBAL_HANDLER = Handler()
 
