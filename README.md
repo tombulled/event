@@ -7,13 +7,13 @@ Event handling
 ```python
 import event
 
-@event.on('alert')
+@event.on("alert")
 def on_alert():
-    print('Alert!')
+    print("Alert!")
 ```
 
 ```python
->>> event.dispatch('alert')
+>>> event.dispatch("alert")
 Alert!
 ```
 
@@ -21,17 +21,14 @@ Alert!
 ```python
 import event
 
-class Event(event.Event):
-    LOGIN: str = 'login'
-
 handler = event.Handler()
 
-@handler.on(Event.LOGIN)
+@handler.on("login")
 def on_login(username: str):
-    print(f'User {username!r} logged in')
+    print(f"Logged in as {username}")
 ```
 
 ```python
->>> handler.dispatch(Event.LOGIN, username = 'admin')
-User 'admin' logged in
+>>> handler.dispatch("login", username="admin")
+Logged in as admin
 ```
